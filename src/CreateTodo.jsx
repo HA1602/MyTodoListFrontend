@@ -2,7 +2,7 @@ import axios from "axios";
 
 async function CreateTodo(title,description){
     try {
-        const response = await axios.post("http://localhost:3000/tasks",
+        const response = await axios.post("http://54.90.228.88:3000/tasks",
             {
                 title,description
             }

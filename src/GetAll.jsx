@@ -10,7 +10,7 @@ function GetAll() {
   const fetchTasks = () => {
     const query = `?search=${encodeURIComponent(searchTerm)}&sort=${sortOrder}`;
     axios
-      .get(`http://localhost:3000/tasks${query}`)
+      .get(`http://54.90.228.88:3000/tasks${query}`)
       .then((response) => setTasks(response.data))
       .catch((error) => console.error("Error fetching tasks:", error));
   };

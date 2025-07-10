@@ -3,13 +3,14 @@ import { useState } from "react";
 
 function List(props) {
   const [status, setStatus] = useState(props.status);
+  const [updatedAt, setUpdate] = useState(props.updatedAt);
 
   const deleteTask = () => {
     console.log("delete pressed");
     axios
-      .delete(`http://localhost:3000/tasks/${props.id}`) // Make sure the route matches your backend
+      .delete(`http://54.90.228.88:3000/tasks/${props.id}`)
       .then((response) => {
-        console.log("✅ Resource deleted:", response.data);
+        console.log(" Resource deleted:", response.data);
         props.refreshTasks();
       })
       .catch((error) => {
@@ -20,12 +21,13 @@ function List(props) {
   const changeTaskStatus = () => {
     const newStatus = status === "TODO" ? "DONE" : "TODO";
     axios
-      .patch(`http://localhost:3000/tasks/${props.id}/status`, {
+      .patch(`http://54.90.228.88:3000/tasks/${props.id}/status`, {
         status: newStatus,
       })
       .then((response) => {
-        console.log(" Task updated:", response.data);
+        console.log("Task updated:", response.data);
         setStatus(newStatus);
+        setUpdate(response.data.updatedAt); 
       })
       .catch((error) => {
         console.error("Error updating todo:", error);
@@ -58,10 +60,9 @@ function List(props) {
       </p>
 
       <p className="text-sm text-gray-600 mb-2.5">
-        Updated: {new Date(props.updatedAt).toLocaleString()}
+        Updated: {new Date(updatedAt).toLocaleString()}
       </p>
 
-      {/* Spacer that pushes this to the bottom */}
       <div className="mt-auto flex justify-end">
         <button
           className="delete-btn text-white bg-red-500 py-1.5 px-3 rounded text-sm transition-colors font-medium"
