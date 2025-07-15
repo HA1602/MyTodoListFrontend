@@ -4,10 +4,9 @@ import GetAll from "./GetAll";
 
 function App() {
   return (
-    <div className="bg- bg-[#161B40] min-h-screen flex flex-col justify-between">
+    <div className="bg- bg-[#ffc300] min-h-full flex flex-col justify-between">
       <Header />
       <main className="flex-1 px-6 py-4">
-        <Addtodo />
         <GetAll />
       </main>
     </div>
